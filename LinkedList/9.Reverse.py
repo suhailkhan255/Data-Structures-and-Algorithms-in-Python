@@ -27,23 +27,28 @@ class LinkedList:
             self.tail = new_node
         self.length += 1
 
-    def popFirst(self):
-        # for no node
-        if self.length == 0:
-            return None
+    def reverse(self):
         temp = self.head
-        self.head = self.head.next
-        temp.next = None
-        self.length -=1
-        if self.length == 0:
-            self.tail = None
-        return temp.value
+        self.head =self.tail
+        self.tail = temp
+        after =temp.next
+        before = None
+
+        for _ in range(self.length):
+            after = temp.next
+            temp.next = before
+            before = temp
+            temp = after
 
 
 
-my_linked_list = LinkedList(2)
-my_linked_list.append(1)
-#my_linked_list.print_list()
-print(my_linked_list.popFirst())
-print(my_linked_list.popFirst())
-print(my_linked_list.popFirst())
+
+my_linked_list = LinkedList(1)
+my_linked_list.append(2)
+my_linked_list.append(3)
+my_linked_list.append(7)
+my_linked_list.append(6)
+my_linked_list.print_list()
+my_linked_list.reverse()
+print("********")
+my_linked_list.print_list()
